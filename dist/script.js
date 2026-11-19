@@ -36,13 +36,22 @@ window.addEventListener("click", function (e) {
 // darkmode toggle
 const darkToggle = document.querySelector("#dark-toggle");
 const html = document.querySelector("html");
+const savedTheme = localStorage.getItem("theme");
 
-darkToggle.addEventListener("click", function () {
+if (savedTheme === "dark") {
+    html.classList.add("dark");
+    darkToggle.checked = true;
+} else {
+    html.classList.remove("dark");
+    darkToggle.checked = false;
+}
+
+darkToggle.addEventListener("change", function () {
   if (darkToggle.checked) {
     html.classList.add("dark");
-    localStorage.theme = "dark";
+    localStorage.setItem("theme", "dark");
   } else {
     html.classList.remove("dark");
-    localStorage.theme = "light";
+    localStorage.setItem("theme", "light");
   }
 });
